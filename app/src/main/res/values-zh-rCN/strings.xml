@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FirstApp</string>
+    <string name="hello">你好</string>
+    <string name="button">按钮</string>
+    <string name="action_settings">设置</string>
+    <string name="btn">按钮2</string>
+
+
+</resources>
