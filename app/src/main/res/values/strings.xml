@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">FirstApp</string>
     <string name="action_settings">Settings</string>
-    <string name="hello">Hello Kitty</string>
-    <string name="button">Button</string>
-    <string name="btn">btn</string>
+    <string name="hello">Happy Birthday!</string>
+    <string name="from">Your Tom</string>
+    <string name="todo">TODO</string>
 </resources>
