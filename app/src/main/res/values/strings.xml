@@ -4,4 +4,9 @@
     <string name="hello">Happy Birthday!</string>
     <string name="from">Your Tom</string>
     <string name="todo">TODO</string>
+    <string name="btn_label">submit</string>
+    <string name="input"> Enter the temperature in centigrade</string>
+    <string name="text">Temperature Conversion</string>
+    <string name="blank" />
+    <string name="ccc">℃</string>
 </resources>

@@ -5,5 +5,10 @@
     <string name="action_settings">设置</string>
     <string name="from">汤姆</string>
     <string name="todo">背景</string>
+    <string name="btn_label">提交</string>
+    <string name="input">请输入摄氏温度</string>
+    <string name="text">温度转换器</string>
+    <string name="blank" />
+    <string name="ccc">℃</string>
 
 </resources>
