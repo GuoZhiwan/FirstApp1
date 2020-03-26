@@ -16,4 +16,5 @@
     <string name="rmb_hint">请输入人民币</string>
     <string name="btn_euro_label">欧元</string>
     <string name="btn_won_label">韩元</string>
+    <string name="submit">提交</string>
 </resources>

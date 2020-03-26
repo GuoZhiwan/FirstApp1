@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="todo">TODO</string>
     <string name="btn_label">submit</string>
-    <string name="input"> Enter the temperature in centigrade</string>
+    <string name="input"> Enter the temperature in centi grade</string>
     <string name="text">Temperature Conversion</string>
     <string name="blank" />
     <string name="ccc">℃</string>
@@ -15,4 +15,5 @@
     <string name="btn_euro_label">Euro</string>
     <string name="btn_won_label">Won</string>
     <string name="rmb_hint">Input RMB</string>
+    <string name="submit">skip</string>
 </resources>

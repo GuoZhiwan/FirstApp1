@@ -2,7 +2,10 @@ package com.swufe.firstapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.view.View;
 import android.widget.TextView;
@@ -40,5 +43,16 @@ public class RateActivity extends AppCompatActivity {
 
      }  show.setText(String.valueOf(new DecimalFormat("##.##").format(val)));
 
+
+    }
+    public void openOne(View btn){
+        //打开一个页面
+        Log.i("open","openone");
+        Intent hello=new Intent(RateActivity.this,SecondActivity.class);
+
+        Intent web=new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.baidu.com"));
+
+        Intent call=new Intent(Intent.ACTION_DIAL,Uri.parse("tel:13134643234"));
+        startActivity(call);
     }
 }
