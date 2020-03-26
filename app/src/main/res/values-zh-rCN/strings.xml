@@ -12,4 +12,8 @@
     <string name="label_2">+2 分</string>
     <string name="label_1">+1 分</string>
     <string name="btn_resetlabel">重新设置</string>
+    <string name="btn_dollar_label">美元</string>
+    <string name="rmb_hint">请输入人民币</string>
+    <string name="btn_euro_label">欧元</string>
+    <string name="btn_won_label">韩元</string>
 </resources>
