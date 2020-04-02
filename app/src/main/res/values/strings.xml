@@ -15,5 +15,6 @@
     <string name="btn_euro_label">Euro</string>
     <string name="btn_won_label">Won</string>
     <string name="rmb_hint">Input RMB</string>
-    <string name="submit">skip</string>
+    <string name="submit">config</string>
+    <string name="btn_sava_label">Save</string>
 </resources>
