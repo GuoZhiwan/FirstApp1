@@ -1,5 +1,6 @@
 package com.swufe.firstapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -76,6 +77,23 @@ public class RateActivity extends AppCompatActivity {
         Log.i(TAG, "openOne:dollar_rate_key="+dollarRate);
         Log.i(TAG, "openOne:euro_rate_key="+euroRate);
         Log.i(TAG, "openOne:won_rate_key="+wonRate);
-        startActivity(config);
+        //startActivity(config);
+        startActivityForResult(config,1);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode==1 && resultCode==2){
+            Bundle bundle=data.getExtras();
+            dollarRate=bundle.getFloat("key_dollar",0.1f);
+            euroRate=bundle.getFloat("ket_euro",0.1f);
+            wonRate=bundle.getFloat("key_won",0.1f);
+            Log.i(TAG, "onActivityResult:dollarRate ="+dollarRate);
+            Log.i(TAG, "onActivityResult:euroRate ="+euroRate);
+            Log.i(TAG, "onActivityResult:wonRate ="+wonRate);
+            
+            
+        }
     }
 }
