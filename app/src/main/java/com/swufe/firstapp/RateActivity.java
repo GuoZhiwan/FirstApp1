@@ -1,5 +1,6 @@
 package com.swufe.firstapp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +8,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.view.View;
 import android.widget.TextView;
@@ -70,16 +73,34 @@ public class RateActivity extends AppCompatActivity {
         startActivity(call);
         finish();
          */
-        Intent config=new Intent(this,ConfigActivity.class);
-        config.putExtra("dollar_rate_key",dollarRate);
-        config.putExtra("euro_rate_key",euroRate);
-        config.putExtra("won_rate_key",wonRate);
-        Log.i(TAG, "openOne:dollar_rate_key="+dollarRate);
-        Log.i(TAG, "openOne:euro_rate_key="+euroRate);
-        Log.i(TAG, "openOne:won_rate_key="+wonRate);
-        //startActivity(config);
-        startActivityForResult(config,1);
+        openConfig();
 
+    }
+
+    private void openConfig() {
+        Intent config = new Intent(this, ConfigActivity.class);
+        config.putExtra("dollar_rate_key", dollarRate);
+        config.putExtra("euro_rate_key", euroRate);
+        config.putExtra("won_rate_key", wonRate);
+        Log.i(TAG, "openOne:dollar_rate_key=" + dollarRate);
+        Log.i(TAG, "openOne:euro_rate_key=" + euroRate);
+        Log.i(TAG, "openOne:won_rate_key=" + wonRate);
+        //startActivity(config);
+        startActivityForResult(config, 1);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.rate,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.menu_set){
+            openConfig();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
