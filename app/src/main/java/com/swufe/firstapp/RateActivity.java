@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,9 +24,9 @@ public class RateActivity extends AppCompatActivity {
     EditText rmb;
     TextView show;
     public final String TAG="RateActivity";
-    public float dollarRate=1.0f;
-    public float euroRate=2.0f;
-    public float wonRate=3.0f;
+    public float dollarRate=0.1f;
+    public float euroRate=0.2f;
+    public float wonRate=0.3f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +34,15 @@ public class RateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rate);
         rmb=(EditText) findViewById(R.id.rmb);
         show=(TextView) findViewById(R.id.showout);
-
+        //获取sp里的数据
+        SharedPreferences sharedPreferences=getSharedPreferences("myrate", Activity.MODE_PRIVATE);
+        //SharedPreferences sp=PreferenceManager.getDefaultSharedPreferences(this);
+        dollarRate=sharedPreferences.getFloat("dollar_rate",0.0f);
+        euroRate=sharedPreferences.getFloat("euro_rate",0.0f);
+        wonRate=sharedPreferences.getFloat("won_rate",0.0f);
+        Log.i(TAG, "onCreate: sp dollarRate="+dollarRate);
+        Log.i(TAG, "onCreate: sp euroRate="+euroRate);
+        Log.i(TAG, "onCreate: sp wonRate="+wonRate);
 
     }
     public void onClick(View btn){
@@ -113,6 +124,14 @@ public class RateActivity extends AppCompatActivity {
             Log.i(TAG, "onActivityResult:dollarRate ="+dollarRate);
             Log.i(TAG, "onActivityResult:euroRate ="+euroRate);
             Log.i(TAG, "onActivityResult:wonRate ="+wonRate);
+            //将新设置的汇率写到sp中
+            SharedPreferences sharedPreferences=getSharedPreferences("myrate", Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor=sharedPreferences.edit();
+            editor.putFloat("dollar_rate",dollarRate);
+            editor.putFloat("euro_rate",euroRate);
+            editor.putFloat("won_rate",wonRate);
+            editor.commit();
+            Log.i(TAG, "onActivityResult: 数据已保存到sharedpreferrnce");
             
             
         }
