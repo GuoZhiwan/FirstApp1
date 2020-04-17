@@ -1,11 +1,11 @@
 package com.swufe.firstapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class SecondActivity extends AppCompatActivity {
     TextView score;
@@ -17,7 +17,6 @@ public class SecondActivity extends AppCompatActivity {
         score = findViewById(R.id.score);
         score2 = findViewById(R.id.score2);
     }
-
     public void btnAdd1(View btn) {
         if(btn.getId()==R.id.btn_1) {
             showScore(1);
