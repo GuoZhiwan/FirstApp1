@@ -72,7 +72,15 @@ public class RateActivity extends AppCompatActivity implements Runnable {
                 }
                 super.handleMessage(msg);
             }
+            Runnable runnable=new Runnable() {
+                public void run() {
+
+                    handler.postDelayed(this, 86400000);
+                }
+            };
         };
+
+
     }
 
     public void onClick(View btn) {
