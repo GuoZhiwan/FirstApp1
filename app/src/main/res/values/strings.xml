@@ -17,4 +17,5 @@
     <string name="rmb_hint">Input RMB</string>
     <string name="submit">config</string>
     <string name="btn_sava_label">Save</string>
+    <string name="label_open_list">OpenList</string>
 </resources>
