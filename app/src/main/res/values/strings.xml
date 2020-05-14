@@ -21,4 +21,5 @@
     <string name="input_rmb">Input RMB</string>
     <string name="info_label">请输入关键字</string>
     <string name="info_btn">查询</string>
+    <string name="nodata">No Data</string>
 </resources>

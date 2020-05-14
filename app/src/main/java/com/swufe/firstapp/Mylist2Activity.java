@@ -1,6 +1,8 @@
 package com.swufe.firstapp;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,10 +25,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Mylist2Activity extends ListActivity implements Runnable, AdapterView.OnItemClickListener {
+public class Mylist2Activity extends ListActivity implements Runnable, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
     private String TAG="mylist2";
     Handler handler;
-    private ArrayList<HashMap<String,String>> listItems;//存放文字、图片等信息
+    private List<HashMap<String,String>> listItems;//存放文字、图片等信息
     private SimpleAdapter listItemAdapter;//适配器
     public void run(){
         List<HashMap<String,String>> retlist=new ArrayList<HashMap<String,String>>();
@@ -81,16 +83,17 @@ public class Mylist2Activity extends ListActivity implements Runnable, AdapterVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initListView();
-        MyAdapter myAdapter=new MyAdapter(this,R.layout.list_item,listItems);
+       /* MyAdapter myAdapter=new MyAdapter(this,R.layout.list_item,listItems);
         this.setListAdapter(myAdapter);
+        */
         Thread t = new Thread(this);
         t.start();
 
         handler=new Handler(){
             public void handleMessage(@NonNull Message msg) {
                 if(msg.what==5){
-                    List<HashMap<String,String>> list2=(List<HashMap<String,String>>)msg.obj;
-                    listItemAdapter=new SimpleAdapter(Mylist2Activity.this,list2,
+                    listItems=(List<HashMap<String,String>>)msg.obj;
+                    listItemAdapter=new SimpleAdapter(Mylist2Activity.this,listItems,
                             R.layout.list_item,
                             new String[]{"ItemTitle","ItemDetail"},
                             new int[]{R.id.itemTitle,R.id.itemDetail}
@@ -102,6 +105,7 @@ public class Mylist2Activity extends ListActivity implements Runnable, AdapterVi
             }
         };
             getListView().setOnItemClickListener(this);
+            getListView().setOnItemLongClickListener(this);
 
     }
 
@@ -128,5 +132,30 @@ public class Mylist2Activity extends ListActivity implements Runnable, AdapterVi
         rateCalc.putExtra("rate",Float.parseFloat(detailStr));
         startActivity(rateCalc);
 
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+        Log.i(TAG, "onItemLongClick: 长按列表项position="+position);
+        //删除操作
+
+        //构造对话框进行确认操作
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("提示").setMessage("请确认是否删除当前数据").setPositiveButton("是", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.i(TAG, "onClick: 对话框处理");
+                listItems.remove(position);
+                listItemAdapter.notifyDataSetChanged();
+            }
+        })
+                .setNegativeButton("否",null);
+        builder.create().show();
+
+        Log.i(TAG, "onItemLongClick: size"+listItems.size());
+
+
+
+        return true;
     }
 }
