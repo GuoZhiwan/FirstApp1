@@ -79,14 +79,14 @@ public class RateListActivity extends ListActivity implements Runnable {
             //获取网络数据，放入list带回到主线程中
             Document doc = null;
             try {
-                Thread.sleep(3000);
+                List<RateItem> rateList = new ArrayList<RateItem>();
                 doc = Jsoup.connect("https://www.boc.cn/sourcedb/whpj/").get();
                 Log.i(TAG, "run: " + doc.title());
                 Elements tables = doc.getElementsByTag("table");
                 Element table6 = tables.get(1);
                 //获取td中的数据
                 Elements tds = table6.getElementsByTag("td");
-                List<RateItem> rateList=new ArrayList<RateItem>();
+
                 for (int i = 0; i < tds.size(); i += 8) {
                     Element td1 = tds.get(i);
                     Element td2 = tds.get(i + 5);
@@ -94,33 +94,28 @@ public class RateListActivity extends ListActivity implements Runnable {
                     String val = td2.text();
                     Log.i(TAG, "run: " + td1.text() + "==>" + td2.text());
                     retlist.add(str1 + "==>" + val);
-                    rateList.add(new RateItem(str1,val));
+                    rateList.add(new RateItem(str1, val));
                 }
                 //把数据写入数据库中
-                RateManager manager=new RateManager(RateListActivity.this);
+                RateManager manager = new RateManager(RateListActivity.this);
                 manager.deleteAll();
                 Log.i(TAG, "run: 删除所有记录");
                 manager.addAll(rateList);
                 Log.i(TAG, "run: 添加所有记录");
-                //更新日期
-                SharedPreferences sp=getSharedPreferences("myrate",Context.MODE_PRIVATE);
-                SharedPreferences.Editor edit=sp.edit();
-                edit.putString(DATE_SP_KEY,curDateStr);
-                edit.commit();
-                Log.i(TAG, "run: 更新日期结束："+curDateStr);
-
 
 
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
-
-
+            //更新日期
+            SharedPreferences sp = getSharedPreferences("myrate", Context.MODE_PRIVATE);
+            SharedPreferences.Editor edit = sp.edit();
+            edit.putString(DATE_SP_KEY, curDateStr);
+            edit.commit();
+            Log.i(TAG, "run: 更新日期结束：" + curDateStr);
+        }
             Message msg = handler.obtainMessage(5);
             msg.obj = retlist;
             handler.sendMessage(msg);
-        }
     }
 }

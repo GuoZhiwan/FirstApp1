@@ -50,7 +50,7 @@ public class RateManager {
             rateItem=new RateItem();
             rateItem.setId(cursor.getInt(cursor.getColumnIndex("ID")));
             rateItem.setCurName(cursor.getString(cursor.getColumnIndex("CURNAME")));
-            rateItem.setCurRate(cursor.getString(cursor.getColumnIndex("CURNAME")));
+            rateItem.setCurRate(cursor.getString(cursor.getColumnIndex("CURRATE")));
             cursor.close();
 
 
@@ -78,7 +78,7 @@ public class RateManager {
                 RateItem item = new RateItem();
                 item.setId(cursor.getInt(cursor.getColumnIndex("ID")));
                 item.setCurName(cursor.getString(cursor.getColumnIndex("CURNAME")));
-                item.setCurRate(cursor.getString(cursor.getColumnIndex("CURNAME")));
+                item.setCurRate(cursor.getString(cursor.getColumnIndex("CURRATE")));
                 rateList.add(item);
             }
             cursor.close();
